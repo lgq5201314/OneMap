@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 // 存放数据的地方
 const state = {
-    _defaultView:''
+    _defaultView:null
 };
 // 修改仓库数据唯一的手段
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
     }
 };
 // 处理业务逻辑 处理异步操作
-// const actions = {};
+const actions = {};
 // 简化仓库数据，让组件获取仓库的数据更加的方便
 const getters = {}
 
