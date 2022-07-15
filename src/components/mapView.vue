@@ -4,7 +4,10 @@
 
 <script>
 import { loadModules } from 'esri-loader';
-
+const option = {
+    url: 'https://js.arcgis.com/4.18/init.js',
+    css: 'https://js.arcgis.com/4.18/esri/themes/light/main.css',
+};
 export default {
     name: 'mapView',
     data() {
@@ -18,17 +21,12 @@ export default {
     },
     methods: {
         async _createMapView() {
-            const option = {
-                url: 'https://js.arcgis.com/4.18/init.js',
-                css: 'https://js.arcgis.com/4.18/esri/themes/light/main.css',
-            };
-            const [Map, MapView, Basemap, TileLayer, FeatureLayer, BasemapToggle, ScaleBar] = await loadModules(
+            const [Map, MapView, Basemap, TileLayer, BasemapToggle, ScaleBar] = await loadModules(
                 [
                     'esri/Map',
                     'esri/views/MapView',
                     'esri/Basemap',
                     'esri/layers/TileLayer',
-                    'esri/layers/FeatureLayer',
                     'esri/widgets/BasemapToggle',
                     'esri/widgets/ScaleBar',
                 ],
@@ -45,22 +43,28 @@ export default {
                 title: 'basemap',
                 id: 'basemap',
             });
-
             const map = new Map({
                 basemap,
             });
             const view = new MapView({
                 container: 'viewDiv',
                 map: map,
-                zoom: 10,
-                center: [110.00836433837888, 27.537837400758733],
+                zoom: 5,
+                extent: {
+                    spatialReference: {
+                        wkid: 102100,
+                    },
+                    xmax: 12718976.9077,
+                    xmin: 12110014.4544,
+                    ymax: 3520103.8329,
+                    ymin: 2831969.5243,
+                },
             });
-            view.ui.components = []; //将默认ui设置为空
+
             this.$store.commit('_saveView', view);
-            // const f = new FeatureLayer({
-            //     url: 'https://services3.arcgis.com/U26uBjSD32d7xvm2/arcgis/rest/services/xzq_City_Mecator/FeatureServer/2',
-            // });
-            // map.add(f);
+
+            view.ui.components = []; //将默认ui设置为空
+
             //地图控件
             let basemapToggle = new BasemapToggle({
                 view: view, // The view that provides access to the map's "streets-vector" basemap
@@ -73,7 +77,7 @@ export default {
             //比例尺
             let scaleBar = new ScaleBar({
                 view: view,
-                unit:'metric'
+                unit: 'metric',
             });
             // Add widget to the bottom left corner of the view
             view.ui.add(scaleBar, {

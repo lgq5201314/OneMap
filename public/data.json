@@ -1,0 +1,44 @@
+        {
+                "data": [
+                        {
+                                "id": 1,
+                                "label": "地图风格",
+                                "children": [
+                                        {
+                                                "id": 2,
+                                                "layerid": "37915",
+                                                "type": "tile",
+                                                "layerurl": "https://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetGray/MapServer",
+                                                "label": "灰色系基础地图"
+                                        },
+                                        {
+                                                "id": 3,
+                                                "layerid": "37914",
+                                                "type": "tile",
+                                                "layerurl": "https://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetWarm/MapServer",
+                                                "label": "暖色系基础地图"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": 4,
+                                "label": "全国行政区",
+                                "children": [
+                                        {
+                                                "id":5,
+                                                "label":"火车站点",
+                                                "layerid":"37915",
+                                                "type":"feature",
+                                                "layerurl":"https://services3.arcgis.com/U26uBjSD32d7xvm2/ArcGIS/rest/services/trainstation/FeatureServer/0"
+                                        }
+                                ]
+                        },
+                        {
+                                "id": 5,
+                                "label": "人口分布",
+                                "children": [
+                               
+                                ]
+                        }
+                ]
+        }
