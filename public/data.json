@@ -27,17 +27,44 @@
                                         {
                                                 "id":5,
                                                 "label":"火车站点",
-                                                "layerid":"37915",
+                                                "layerid":"37916",
                                                 "type":"feature",
                                                 "layerurl":"https://services3.arcgis.com/U26uBjSD32d7xvm2/ArcGIS/rest/services/trainstation/FeatureServer/0"
                                         }
                                 ]
                         },
                         {
-                                "id": 5,
-                                "label": "人口分布",
+                                "id": 6,
+                                "label": "雅弄冰川",
                                 "children": [
-                               
+                                        {
+                                                "id":7,
+                                                "label":"2014雅弄冰川",
+                                                "layerid":"37917",
+                                                "type":"tile",
+                                                "layerurl":"https://tiles.arcgis.com/tiles/U26uBjSD32d7xvm2/arcgis/rest/services/ynGlacier20141120_tif/MapServer"
+                                        },
+                                        {
+                                                "id":8,
+                                                "label":"2015雅弄冰川",
+                                                "layerid":"37918",
+                                                "type":"tile",
+                                                "layerurl":"https://tiles.arcgis.com/tiles/U26uBjSD32d7xvm2/arcgis/rest/services/ynGlacier20151006/MapServer"
+                                        },
+                                        {
+                                                "id":9,
+                                                "label":"2016雅弄冰川",
+                                                "layerid":"37919",
+                                                "type":"tile",
+                                                "layerurl":"https://tiles.arcgis.com/tiles/U26uBjSD32d7xvm2/arcgis/rest/services/ynGlacier20161024/MapServer"
+                                        },
+                                        {
+                                                "id":10,
+                                                "label":"2017雅弄冰川",
+                                                "layerid":"37920",
+                                                "type":"tile",
+                                                "layerurl":"https://tiles.arcgis.com/tiles/U26uBjSD32d7xvm2/arcgis/rest/services/ynGlacier20171027_tif/MapServer"
+                                        }
                                 ]
                         }
                 ]

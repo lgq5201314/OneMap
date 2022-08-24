@@ -23,10 +23,6 @@
 <script>
 import { loadModules } from 'esri-loader';
 import axios from 'axios';
-const option = {
-    url: 'https://js.arcgis.com/4.18/init.js',
-    css: 'https://js.arcgis.com/4.18/esri/themes/light/main.css',
-};
 export default {
     name: 'catalogueTree',
     data() {
@@ -69,7 +65,7 @@ export default {
             let Map = this.$store.state._defaultView.map;
             const [TileLayer, MapImageLayer] = await loadModules(
                 ['esri/layers/TileLayer', 'esri/layers/MapImageLayer'],
-                option,
+             
             );
             let respose = await axios.get('data.json');
 
@@ -90,7 +86,6 @@ export default {
             }
             const [TileLayer, MapImageLayer,FeatureLayer] = await loadModules(
                 ['esri/layers/TileLayer', 'esri/layers/MapImageLayer',"esri/layers/FeatureLayer"],
-                option,
             );
             // let checkedNode = this.$refs.tree.getCheckedNodes(true);
             // let id = node.layerid;
@@ -99,20 +94,19 @@ export default {
             // let layer = this.$store.state._defaultView.map.findLayerById(id);
             // checked ? (layer.visible = true && this.arr.push(node.id)) : (layer.visible = false);
             let layerurl = node.layerurl;
-
             if (checked) {
                 switch (node.type) {
                     case 'tile':
                         let Tlayer = new TileLayer({ url: layerurl, id: node.layerid });
-                        this.$store.state._defaultView.map.add(Tlayer);
+                        mapView.map.add(Tlayer);
                         break;
                     case 'feature':
                         let Flayer = new FeatureLayer({ url: layerurl, id: node.layerid });
-                        this.$store.state._defaultView.map.add(Flayer);
+                        mapView.map.add(Flayer);
                 }
             } else {
-                let layer = this.$store.state._defaultView.map.findLayerById(node.layerid);
-                this.$store.state._defaultView.map.remove(layer);
+                let layer = mapView.map.findLayerById(node.layerid);
+                mapView.map.remove(layer);
             }
         },
         closePlane() {

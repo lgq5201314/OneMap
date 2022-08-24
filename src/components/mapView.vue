@@ -1,13 +1,12 @@
 <template>
-    <div id="viewDiv"></div>
+    <div c>
+        <div id="viewDiv"></div>
+        <div class="transfor23d">3D</div>
+    </div>
 </template>
 
 <script>
 import { loadModules } from 'esri-loader';
-const option = {
-    url: 'https://js.arcgis.com/4.18/init.js',
-    css: 'https://js.arcgis.com/4.18/esri/themes/light/main.css',
-};
 export default {
     name: 'mapView',
     data() {
@@ -30,9 +29,7 @@ export default {
                     'esri/widgets/BasemapToggle',
                     'esri/widgets/ScaleBar',
                 ],
-                option,
             );
-
             const basemap = new Basemap({
                 baseLayers: [
                     new TileLayer({
@@ -60,11 +57,9 @@ export default {
                     ymin: 2831969.5243,
                 },
             });
-
-            this.$store.commit('_saveView', view);
-
+            window.mapview = view;
+            // this.__proto__.__proto__.$mapView = view 
             view.ui.components = []; //将默认ui设置为空
-
             //地图控件
             let basemapToggle = new BasemapToggle({
                 view: view, // The view that provides access to the map's "streets-vector" basemap
@@ -91,10 +86,21 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #viewDiv {
     position: relative;
-    height: 100%;
+    height: 640px;
     width: 100%;
+}
+.transfor23d{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: 120px;
+    right: 20px;
+    background-color: #fff;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
 }
 </style>
