@@ -36,10 +36,6 @@
 
 <script>
 import { loadModules } from 'esri-loader';
-const option = {
-    url: 'https://js.arcgis.com/4.18/init.js',
-    css: 'https://js.arcgis.com/4.18/esri/themes/light/main.css',
-};
 export default {
     name: 'xzqNavigation',
     data() {
@@ -59,7 +55,7 @@ export default {
         async loadAll() {
             const [QueryTask, Query, FeatureLayer] = await loadModules(
                 ['esri/tasks/QueryTask', 'esri/tasks/support/Query', 'esri/layers/FeatureLayer'],
-                option,
+                
             );
 
             let countyLayerurl =
@@ -139,7 +135,6 @@ export default {
         async queryProvince(result, url, zoom) {
             const [QueryTask, Query, Graphic] = await loadModules(
                 ['esri/tasks/QueryTask', 'esri/tasks/support/Query', 'esri/Graphic'],
-                option,
             );
             // symbol定义
             var sym = {
@@ -163,7 +158,7 @@ export default {
             let g = resultsProvince.features[0].geometry;
             // 图层只允许存在一个
             if (this.polygonGraphic) {
-                this.$store.state._defaultView.graphics.remove(this.polygonGraphic);
+                window.mapview.graphics.remove(this.polygonGraphic);
             }
             this.polygonGraphic = new Graphic({
                 geometry: g,
@@ -171,10 +166,9 @@ export default {
             });
             // 将查询到的geometry添加到地图中
 
-            this.$store.state._defaultView.graphics.add(this.polygonGraphic);
-            debugger;
+            window.mapview.graphics.add(this.polygonGraphic);
             // 跳转并高亮
-            this.$store.state._defaultView
+            window.mapview
                 .goTo(
                     {
                         target: this.polygonGraphic,
